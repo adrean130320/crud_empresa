@@ -1,0 +1,354 @@
+/* ESTILOS PARA EL ESQUELETO GENERAL */
+/* 1) Hack para tener el sticky footer*/
+html,
+body {
+  /*background-image: url(../img/azul48.jpg);*/
+  background-color: #f7f7f7;
+  padding-bottom: 70px;
+  padding-top: 23px;
+  /* position: relative; */
+  height: 100%;
+  /* El elemento html y body no pueden tener padding or margin. */
+  /* position: relative;
+    min-height: 100vh; */
+  margin:2em;
+}
+
+/* La cantidad 70px tanto en wrap como en footer es la altura del footer */
+#wrap {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  /* margin: 0 auto -70px; */
+}
+
+#push,
+#footer {
+  /* bottom: 0; */
+  height: 40px;
+  width: 100%;
+  /* position: absolute; */
+}
+
+#cuerpo {
+  background-color: white;
+}
+
+.marco_sombra {
+  /*border: solid 1px;*/
+  padding: 10px;
+  background: rgba(159, 172, 237, 1);
+  background: -moz-linear-gradient(
+    -45deg,
+    rgba(159, 172, 237, 1) 0%,
+    rgba(246, 246, 246, 1) 47%,
+    rgba(159, 215, 245, 1) 100%
+  );
+  background: -webkit-gradient(
+    left top,
+    right bottom,
+    color-stop(0%, rgba(159, 172, 237, 1)),
+    color-stop(47%, rgba(246, 246, 246, 1)),
+    color-stop(100%, rgba(159, 215, 245, 1))
+  );
+  background: -webkit-linear-gradient(
+    -45deg,
+    rgba(159, 172, 237, 1) 0%,
+    rgba(246, 246, 246, 1) 47%,
+    rgba(159, 215, 245, 1) 100%
+  );
+  background: -o-linear-gradient(
+    -45deg,
+    rgba(159, 172, 237, 1) 0%,
+    rgba(246, 246, 246, 1) 47%,
+    rgba(159, 215, 245, 1) 100%
+  );
+  background: -ms-linear-gradient(
+    -45deg,
+    rgba(159, 172, 237, 1) 0%,
+    rgba(246, 246, 246, 1) 47%,
+    rgba(159, 215, 245, 1) 100%
+  );
+  background: linear-gradient(
+    135deg,
+    rgba(159, 172, 237, 1) 0%,
+    rgba(246, 246, 246, 1) 47%,
+    rgba(159, 215, 245, 1) 100%
+  );
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#9faced', endColorstr='#9fd7f5', GradientType=1 );
+  -webkit-box-shadow: 10px 10px 10px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 10px 10px 10px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 10px 10px 10px 0px rgba(0, 0, 0, 0.75);
+}
+
+.nueva_sombra {
+  box-shadow: 2px 4px 15px 2px rgb(0, 0, 0);
+}
+
+.espaceadoReportes {
+  margin: 2rem !important;
+  margin-bottom: 3.5rem !important;
+}
+
+.calendario {
+  margin-top: 4.2rem;
+  margin-left: -39px;
+}
+#botonReportes {
+  position: absolute;
+  top: 25px;
+  left: 800px;
+}
+
+#botonLineaDeVida {
+  position: absolute;
+  top: 80px;
+  left: 1000px;
+  z-index: 1;
+}
+
+
+
+#botonOculto {
+  position: absolute;
+  top: 23px;
+  left: 630px;
+}
+
+#recaudo {
+  margin-bottom: 2rem;
+}
+#formularioEmpresas select {
+  width: 60%;
+}
+
+.espaceadoCalendario {
+  margin-right: 25px;
+  margin-top: -17px;
+}
+
+.espaceadoCalendarioFechaFin {
+  margin-right: -400px;
+  margin-top: -17px;
+}
+
+.volverReporte {
+  position: absolute;
+  top: 0px;
+  left: 350px;
+  padding-left: 15px;
+  z-index: 1;
+}
+
+.marco_sombra.titulo {
+  margin-top: 5px;
+}
+
+.logo_cabecera {
+  height: 70px;
+}
+
+.recibo_pago {
+  float: none;
+}
+
+.negrita {
+  font-weight: bolder;
+}
+
+.letra-peq {
+  font-size: 10px;
+}
+
+.letra-med {
+  font-size: 11px;
+}
+
+.letra-nor {
+  font-size: 12px;
+}
+
+.letra-grande {
+  font-size: 14px;
+}
+
+.letra-xgrande {
+  font-size: 16px;
+}
+
+.justificado {
+  text-align: justify;
+}
+
+.centrado {
+  text-align: center;
+}
+
+.derecha {
+  text-align: right;
+}
+
+.cursiva {
+  font-style: italic;
+}
+
+.input-sm {
+  font-size: 11px;
+}
+
+.titulo_inicial {
+  top: 0;
+  border-width: 0 0 1px;
+}
+
+.logo {
+  background-color: #005580;
+  color: white;
+  margin-bottom: 40px;
+}
+
+/*2) Aspecto para el footer */
+#footer {
+  background-color: #005580;
+  color: white;
+  /*background-color: #f5f5f5;*/
+}
+
+.container-fluid .credit {
+  margin-left: 10px;
+  margin-top: 25px;
+  color: white;
+  font-weight: bolder;
+  overflow: auto;
+}
+
+#contenido {
+  font-size: 13px;
+  padding-bottom: 50px;
+}
+
+.resaltado {
+  background-color: #add8e6;
+  border: 4px outset;
+  /*padding: 20px 20px 20px 20px;*/
+}
+
+.resaltado2 {
+  border: 4px outset;
+  padding-bottom: 20px;
+}
+
+.marco {
+  border: 1px double;
+  /*    padding-left: 20px;
+        padding-right: 20px;
+        padding-top: 10px;
+        padding-bottom: 10px;*/
+  margin: 2px;
+}
+
+.marco_simple {
+  border: 1px solid;
+  padding: 10px;
+}
+
+.form-control {
+  margin-bottom: 7px;
+}
+
+.submit {
+  margin-left: 17px;
+}
+
+.titulo_azul {
+  font-weight: 700;
+  color: #045fb3;
+}
+
+/* .container-fluid {
+     padding-bottom: 50px;
+} */
+
+.marco_gris {
+  border: 1px solid;
+  /* padding: 10px; */
+  background-color: #eeeff9;
+  /* border-radius: 15px; */
+}
+
+.marco_redondeado {
+  border: 1px solid;
+  border-radius: 15px;
+  background-color: rgba(219, 219, 219, 0.3);
+  height: 245px !important;
+}
+
+.menu-logo {
+  /* margin-top: 5px; */
+  height: 30px;
+  margin-bottom: 5px;
+}
+
+.navbar-brand {
+  padding: 7px 15px !important;
+}
+
+.navbar {
+  margin-bottom: 0px !important;
+}
+
+.menu_nav {
+  width: 110px;
+}
+
+.jm-loadingpage {
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: 999999999;
+  background: url(../img/loadin3.gif) center no-repeat #fff;
+  opacity: 0.6;
+  filter: alpha(opacity=60);
+  font-weight: 700;
+  font-size: 40px;
+}
+
+.counter-sending,
+.execute-time-content {
+  text-align: center;
+}
+
+tfoot tr, thead tr {
+	background: lightblue;
+}
+tfoot td {
+	font-weight:bold;
+}
+
+.centerAverage{
+  margin-top: 20px;
+}
+
+.margin{
+  margin-top: 16px;
+}
+
+
+/*RESPONSIVE*/
+@media (max-width: 892px) {
+  #date-picker-2 {
+    margin-right: -0.625rem;
+  }
+}
+
+@media (max-width: 2100px) {
+  #average {
+    position: absolute;
+    top: 8.2rem;
+    /* Este left no va en su pantalla ':D */
+    left: 4rem;
+    /* z-index: 2; */
+  }
+}
