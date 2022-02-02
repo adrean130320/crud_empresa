@@ -24,7 +24,7 @@ startblock("contenido");
               <td> <?php echo $lista[$i]->mot_id; ?> </td>
               <td> <?php echo $lista[$i]->inb_motivo_transaccion; ?> </td>
               <td> <?php echo $lista[$i]->emp_id; ?> </td>
-              <td> <button type="button" class="btn btn-warning"> EDITAR </button> </td>
+              <td> <button type="button" class="btn btn-warning" onclick="location.href='ActualizarMotivoTransaccion.php?mot_id=<?php echo $lista[$i]->mot_id; ?>'"> EDITAR </button> </td>
               <td> <button onclick="location.href='../controladores/router.php/?con=MotivosTransaccionControlador&&fun=eliminar&&mot_id=<?php echo $lista[$i]->mot_id; ?>'" type="button" class="btn btn-danger"> ELIMINAR </button> </td>
             </tr>
             <?php

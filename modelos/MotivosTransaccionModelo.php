@@ -61,11 +61,13 @@ VALUES(
       $$key=$datos;
       }
     $sql="update motivos_transaccion
-    SET inb_motivo_transaccion
+    SET inb_motivo_transaccion=:inb_motivo_transaccion,emp_id=:emp_id
     WHERE mot_id=:mot_id";
 
     $datos=$this->conectar()->prepare($sql);
+    $datos->bindValue(":inb_motivo_transaccion",$inb_motivo_transaccion);
     $datos->bindValue(":mot_id",$mot_id);
+    $datos->bindValue(":emp_id",$emp_id);
     $datos->execute();
     $verificacion=$datos->rowCount();
     $datos=null;

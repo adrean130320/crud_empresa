@@ -3,7 +3,10 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/crud_empresa/libs/layout.php';
 require_once "../controladores/EmpresaControlador.php";
 $EmpresaControlador=new EmpresaControlador();
 $lista=$EmpresaControlador->listar();
-
+if (!isset($_GET["mot_id"])||empty($_GET["mot_id"])) {
+  header("location:MotivosTransaccion.php");
+  return;
+}
 require_once "../controladores/IngresosBancoControlador.php";
 $IngresosBancoControlador=new IngresosBancoControlador();
 $ingresos=$IngresosBancoControlador->listar();
@@ -12,11 +15,12 @@ startblock("contenido");
 
 ?>
 
-    <form class="" action="../controladores/router.php/?con=MotivosTransaccionControlador&&fun=insertar" method="post">
+    <form class="" action="../controladores/router.php/?con=MotivosTransaccionControlador&&fun=actualizar" method="post">
 
-      <div class="row">
+      <input type="hidden" name="mot_id" value="<?php echo $_GET["mot_id"] ?>">
+
+        <div class="row">
         <div class="col-md-6">
-
           <div class="col-lg-6 col-md-6 col-12">
           <div class="input-group mb-3">
             <div class="input-group-prepend">
@@ -50,6 +54,6 @@ startblock("contenido");
         </div>
       </div>
 <br>
-      <button type="submit" class="btn btn-primary">INSERTAR</button>
+      <button type="submit" class="btn btn-primary">ACTUALIZAR</button>
     </form>
   <?php endblock(); ?>
