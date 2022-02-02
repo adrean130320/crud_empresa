@@ -18,9 +18,9 @@ class MotivosTransaccionModelo extends Conexion{
   $datos=$this->conectar()->prepare($sql);
   $datos->execute();
   while ($filas[]=$datos->fetch(PDO::FETCH_OBJ)) { }
-  $verificacion=$datos->rowCount();
+
   $datos=null;
-  return $verificacion;
+  return $filas;
   }
 
   //inserta un motivo de transaccion

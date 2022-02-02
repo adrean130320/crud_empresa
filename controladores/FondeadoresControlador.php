@@ -22,6 +22,7 @@ class FondeadoresControlador
     $fondeador = array('fon_nombre' =>$_POST["fon_nombre"],
     'fon_identificacion'=>$_POST["fon_identificacion"]
    );
+   header("location:../../vistas/Fondeadores.php");
    return $this->model->insertar($fondeador);
   }
 
@@ -31,6 +32,7 @@ class FondeadoresControlador
     'fon_nombre'=>$_POST["fon_nombre"],
     'fon_identificacion'=>$_POST["fon_identificacion"]
    );
+   header("location:../../vistas/Fondeadores.php");
    return $this->model->actualizar($fondeador);
   }
 
@@ -38,6 +40,10 @@ class FondeadoresControlador
   {
     header("location:../../vistas/Fondeadores.php");
     return $this->model->eliminar($_GET["fon_id"]);
+  }
+  public function buscar($fon_id)
+  {
+    return $this->model->buscar($fon_id);
   }
 
 }

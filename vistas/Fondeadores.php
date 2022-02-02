@@ -6,7 +6,8 @@ $lista=$fondeadores->listar();
 $count=count($lista);
 startblock("contenido");
 ?>
-  <button type="button" class="btn btn-success">INSERTAR</button>
+  <button type="button" class="btn btn-success" onclick="location.href='InsertarFondeador.php'">INSERTAR</button>
+  <button type="button" class="btn btn-success" onclick="location.href=''">CARGAR EXCEL</button>
   <table id="example" class="display dataTable table table-bordered table-hover nowrap">
         <thead>
           <tr>
@@ -24,7 +25,7 @@ startblock("contenido");
               <td> <?php echo $lista[$i]->fon_id; ?> </td>
               <td> <?php echo $lista[$i]->fon_nombre; ?> </td>
               <td> <?php echo $lista[$i]->fon_identificacion; ?> </td>
-              <td> <button type="button" class="btn btn-warning"> EDITAR </button> </td>
+              <td> <button type="button" onclick="location.href='ActualizarFondeadores.php?fon_id=<?php echo $lista[$i]->fon_id; ?>'" class="btn btn-warning"> EDITAR </button> </td>
               <td> <button onclick="location.href='../controladores/router.php/?con=FondeadoresControlador&&fun=eliminar&&fon_id=<?php echo $lista[$i]->fon_id; ?>'" type="button" class="btn btn-danger"> ELIMINAR </button> </td>
             </tr>
             <?php

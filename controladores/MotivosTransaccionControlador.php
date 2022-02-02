@@ -22,6 +22,7 @@ class MotivosTransaccionControlador
     $motivo_transaccion = array('inb_motivo_transaccion' =>$_POST["inb_motivo_transaccion"],
     'emp_id'=>$_POST["emp_id"]
    );
+   header("location:../../vistas/MotivosTransaccion.php");
    return $this->model->insertar($motivo_transaccion);
   }
 

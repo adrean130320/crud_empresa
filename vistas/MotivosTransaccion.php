@@ -6,8 +6,8 @@ $lista=$motivo_transaccion->listar();
 $count=count($lista);
 startblock("contenido");
 ?>
-  <button type="button" class="btn btn-success">INSERTAR</button>
-  <table id="example" class="display dataTable table table-bordered table-hover nowrap">
+  <button type="button" onclick="location.href='InsertarMotivoTransaccion.php'" class="btn btn-success">INSERTAR</button>
+  <table id="example"  class="display dataTable table table-bordered table-hover nowrap">
         <thead>
           <tr>
           <th>mot_id</th>

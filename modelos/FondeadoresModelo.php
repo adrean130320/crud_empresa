@@ -62,9 +62,8 @@ VALUES(
       $$key=$datos;
       }
     $sql="update fondeadores
-    SET fon_nombre,fon_identificacion
+    SET fon_nombre=:fon_nombre,fon_identificacion=:fon_identificacion
     WHERE fon_id=:fon_id";
-
     $datos=$this->conectar()->prepare($sql);
     $datos->bindValue(":fon_id",$fon_id);
     $datos->bindValue(":fon_nombre",$fon_nombre);
@@ -73,6 +72,16 @@ VALUES(
     $verificacion=$datos->rowCount();
     $datos=null;
     return $verificacion;
+  }
+  public function buscar($fon_id)
+  {
+  $sql = "SELECT * FROM fondeadores WHERE fon_id=:fon_id";
+  $datos=$this->conectar()->prepare($sql);
+  $datos->bindValue(":fon_id",$fon_id);
+  $datos->execute();
+  $filas[]=$datos->fetch(PDO::FETCH_OBJ);
+  $datos=null;
+  return $filas;
   }
 }
 
