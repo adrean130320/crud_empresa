@@ -6,8 +6,13 @@ $lista=$fondeadores->listar();
 $count=count($lista);
 startblock("contenido");
 ?>
+
   <button type="button" class="btn btn-success" onclick="location.href='InsertarFondeador.php'">INSERTAR</button>
   <button type="button" class="btn btn-success" onclick="location.href=''">CARGAR EXCEL</button>
+
+
+
+
   <table id="example" class="display dataTable table table-bordered table-hover nowrap">
         <thead>
           <tr>
