@@ -25,7 +25,7 @@ startblock("contenido");
         </div>
         <div class="modal-body">
 
-          <form class="" action="../controladores/router.php/?con=FondeadoresControlador&&fun=insertar" method="post">
+          <form id="formulario" id="formulario" class="" action="../controladores/router.php/?con=FondeadoresControlador&&fun=insertar" method="post">
             <div class="form-group">
               <label for="fon_nombre">Nombres:</label>
               <input type="text" class="form-control" id="fon_nombre" placeholder="nombres" name="fon_nombre">
@@ -112,7 +112,7 @@ startblock("contenido");
                         <div class="modal-body">
 
 
-                          <form class="" action="../controladores/router.php/?con=FondeadoresControlador&&fun=actualizar" method="post">
+                          <form id="formulario" class="" action="../controladores/router.php/?con=FondeadoresControlador&&fun=actualizar" method="post">
                             <input type="hidden" name="fon_id" value="<?php echo $lista[$i]->fon_id; ?>">
                             <div class="form-group">
                               <label for="fon_nombre">Nombres:</label>
@@ -169,7 +169,12 @@ startblock("contenido");
     </table>
 
 
-
+    <script>
+			$(document).ready(function(){
+	    		$('#formulario').click(function(){
+	       		$("#contenido").load("fondeadores.php");
+	    });
+		</script>
 
 
 <?php endblock(); ?>
