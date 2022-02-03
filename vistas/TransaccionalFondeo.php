@@ -6,7 +6,7 @@ $lista=$TransaccionalFondeoControlador->listar();
 $count=count($lista);
 startblock("contenido");
 ?>
-  <button type="button" class="btn btn-success">INSERTAR</button>
+  
   <table id="example" class="display dataTable table table-bordered table-hover nowrap">
         <thead>
           <tr>
@@ -14,8 +14,6 @@ startblock("contenido");
           <th>fon_id</th>
           <th>fot_mes_cierre</th>
           <th>fot_valor_fondeo</th>
-          <th>editar</th>
-          <th>eliminar</th>
         </tr>
         </thead>
         <tbody>
@@ -26,8 +24,6 @@ startblock("contenido");
               <td> <?php echo $lista[$i]->fon_id; ?> </td>
               <td> <?php echo $lista[$i]->fot_mes_cierre; ?> </td>
               <td> <?php echo $lista[$i]->fot_valor_fondeo; ?> </td>
-              <td> <button type="button" class="btn btn-warning"> EDITAR </button> </td>
-              <td> <button onclick="location.href='../controladores/router.php/?con=TransaccionalFondeoControlador&&fun=eliminar&&fot_id=<?php echo $lista[$i]->fot_id; ?>'" type="button" class="btn btn-danger"> ELIMINAR </button> </td>
             </tr>
             <?php
           } ?>

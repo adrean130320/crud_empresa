@@ -14,7 +14,9 @@ class CuentasBancosModelo extends Conexion
   //lista las cuentas del banco
   public function listar()
   {
-  $sql = "SELECT * FROM cuenta_bancos;";
+  $sql = "select DISTINCT c.*,b.ban_nombre,tc.tpc_descripcion
+  FROM cuenta_bancos as c  JOIN bancos as b join tipo_cuenta as tc
+  WHERE c.ban_id=b.ban_id AND tc.tpc_id=c.tpc_id";
   $datos=$this->conectar()->prepare($sql);
   $datos->execute();
   while ($filas[]=$datos->fetch(PDO::FETCH_OBJ)) { }

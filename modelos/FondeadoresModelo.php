@@ -30,14 +30,17 @@ class FondeadoresModelo extends Conexion
       $$key=$datos;
       }
     $sql="insert INTO fondeadores(
-  fon_nombre, fon_identificacion
+  fon_nombre, fon_identificacion,fon_correo,fon_direccion,fon_telefono
      )
 VALUES(
-    :fon_nombre, :fon_identificacion
+    :fon_nombre, :fon_identificacion,:fon_correo,:fon_direccion,:fon_telefono
 )";
   $datos=$this->conectar()->prepare($sql);
   $datos->bindValue(":fon_nombre",$fon_nombre);
   $datos->bindValue(":fon_identificacion",$fon_identificacion);
+  $datos->bindValue(":fon_correo",$fon_correo);
+  $datos->bindValue(":fon_direccion",$fon_direccion);
+  $datos->bindValue(":fon_telefono",$fon_telefono);
   $datos->execute();
   $verificacion=$datos->rowCount();
   $datos=null;
@@ -62,27 +65,22 @@ VALUES(
       $$key=$datos;
       }
     $sql="update fondeadores
-    SET fon_nombre=:fon_nombre,fon_identificacion=:fon_identificacion
+    SET fon_nombre=:fon_nombre,fon_identificacion=:fon_identificacion,fon_correo=:fon_correo,
+    fon_direccion=:fon_direccion,fon_telefono=:fon_telefono
     WHERE fon_id=:fon_id";
     $datos=$this->conectar()->prepare($sql);
     $datos->bindValue(":fon_id",$fon_id);
     $datos->bindValue(":fon_nombre",$fon_nombre);
     $datos->bindValue(":fon_identificacion",$fon_identificacion);
+    $datos->bindValue(":fon_correo",$fon_correo);
+    $datos->bindValue(":fon_direccion",$fon_direccion);
+    $datos->bindValue(":fon_telefono",$fon_telefono);
     $datos->execute();
     $verificacion=$datos->rowCount();
     $datos=null;
     return $verificacion;
   }
-  public function buscar($fon_id)
-  {
-  $sql = "SELECT * FROM fondeadores WHERE fon_id=:fon_id";
-  $datos=$this->conectar()->prepare($sql);
-  $datos->bindValue(":fon_id",$fon_id);
-  $datos->execute();
-  $filas[]=$datos->fetch(PDO::FETCH_OBJ);
-  $datos=null;
-  return $filas;
-  }
+
 }
 
 

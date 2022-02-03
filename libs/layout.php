@@ -142,7 +142,7 @@ $user_id = $_SESSION["user_id"];
 
 
 <?php
-function crear_menu($id_superior, $conexionl, $user_id)
+function crear_menu($id_superior, $conexion, $user_id)
 {
     $menu = ""; // Vaciamos la variable menú
     $sql = "SELECT *
@@ -150,23 +150,23 @@ function crear_menu($id_superior, $conexionl, $user_id)
             join menu_permisos mp on mp.menu_id= m.menu_id
             where mp.user_id = :user_id and m.men_menu_superior = :id_superior
             order by m.men_orden";
-    $resultado = $conexionl->prepare($sql);
+    $resultado = $conexion->prepare($sql);
     $resultado->bindValue(":user_id",$user_id);
     $resultado->bindValue(":id_superior",$id_superior);
     $resultado->execute();
 
-    while ($row=$resultado->fetch(PDO::FETCH_OBJ)) {
+    while ($row=$resultado->fetch(PDO::FETCH_ASSOC)) {
 
 
 
         if ($id_superior == 0) {
-            $menu .= "<li class='dropdown'><a href='" . $row->men_ruta . "'class='dropdown-toggle' data-toggle='dropdown' role='button' aria-haspopup='true' aria-expanded='false'>" . $row->men_nombre . "<span class='caret'></span> </a>";
+                    $menu .= "<li class='dropdown'><a href='" . $row['men_ruta'] . "'class='dropdown-toggle' data-toggle='dropdown' role='button' aria-haspopup='true' aria-expanded='false'>" . $row['men_nombre'] . "<span class='caret'></span> </a>";
         } else {
-            $menu .= "<li><a href='" . $row->men_ruta . "'>" . $row->men_nombre . "</a>";
+                  $menu .= "<li><a href='" . $row['men_ruta'] . "'>" . $row['men_nombre'] . "</a>";
         }
-        $menu .= "<ul class='dropdown-menu'>" . crear_menu($row->menu_id, $conexionl, $user_id) . "</ul>"; //LLamada recursiva para generar todos los niveles del menú
+        $menu .= "<ul class='dropdown-menu'>" . crear_menu($row['menu_id'], $conexion, $user_id) . "</ul>"; //LLamada recursiva para generar todos los niveles del menú
 
-        $menu .= "</li>";
+          $menu .= "</li>";
     }
 
     return $menu;

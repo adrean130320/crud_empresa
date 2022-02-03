@@ -28,11 +28,23 @@ startblock("contenido");
           <form id="formulario" id="formulario" class="" action="../controladores/router.php/?con=FondeadoresControlador&&fun=insertar" method="post">
             <div class="form-group">
               <label for="fon_nombre">Nombres:</label>
-              <input type="text" class="form-control" id="fon_nombre" placeholder="nombres" name="fon_nombre">
+              <input required type="text" class="form-control" id="fon_nombre" placeholder="nombres" name="fon_nombre">
             </div>
             <div class="form-group">
               <label for="fon_identificacion">Identificacion:</label>
-              <input type="text" class="form-control" id="fon_identificacion" placeholder="Identificacion" name="fon_identificacion">
+              <input required type="text" class="form-control" id="fon_identificacion" placeholder="Identificacion" name="fon_identificacion">
+            </div>
+            <div class="form-group">
+              <label  for="fon_correo">Correo electronico:</label>
+              <input required type="email" class="form-control" id="fon_correo" placeholder="correo electronico" name="fon_correo">
+            </div>
+            <div class="form-group">
+              <label for="fon_direccion">Direccion:</label>
+              <input required type="text" class="form-control" id="fon_direccion" placeholder="direccion" name="fon_direccion">
+            </div>
+            <div class="form-group">
+              <label for="fon_telefono">Telefono:</label>
+              <input required type="number" class="form-control" id="fon_telefono" placeholder="telefono" name="fon_telefono">
             </div>
         </div>
         <div class="modal-footer">
@@ -43,15 +55,6 @@ startblock("contenido");
       </div>
     </div>
   </div>
-
-
-
-
-  <button type="button" class="btn btn-success" onclick="location.href=''">CARGAR EXCEL</button>
-
-
-
-
 
   <!-- Button trigger modal -->
 <button type="button" class="btn btn-success" data-toggle="modal" data-target="#cargarExcel">
@@ -84,9 +87,12 @@ startblock("contenido");
   <table id="example" class="display dataTable table table-bordered table-hover nowrap">
         <thead>
           <tr>
-          <th>fon_id</th>
-          <th>fon_nombre</th>
-          <th>fon_identificacion</th>
+          <th>id</th>
+          <th>nombre</th>
+          <th>identificacion</th>
+          <th>correo</th>
+          <th>direccion</th>
+          <th>telefono</th>
           <th>editar</th>
           <th>eliminar</th>
         </tr>
@@ -98,6 +104,9 @@ startblock("contenido");
               <td> <?php echo $lista[$i]->fon_id; ?> </td>
               <td> <?php echo $lista[$i]->fon_nombre; ?> </td>
               <td> <?php echo $lista[$i]->fon_identificacion; ?> </td>
+              <td> <?php echo $lista[$i]->fon_correo; ?> </td>
+              <td> <?php echo $lista[$i]->fon_direccion; ?> </td>
+              <td> <?php echo $lista[$i]->fon_telefono; ?> </td>
               <td>
 
                 <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#actualizar<?php echo $i; ?>" >ACTUALIZAR</button>
@@ -114,15 +123,29 @@ startblock("contenido");
 
                           <form id="formulario" class="" action="../controladores/router.php/?con=FondeadoresControlador&&fun=actualizar" method="post">
                             <input type="hidden" name="fon_id" value="<?php echo $lista[$i]->fon_id; ?>">
+
+
+
                             <div class="form-group">
                               <label for="fon_nombre">Nombres:</label>
-                              <input type="text" class="form-control" id="fon_nombre" value="<?php echo $lista[$i]->fon_nombre; ?>" name="fon_nombre">
+                              <input required type="text" class="form-control" id="fon_nombre" value="<?php echo $lista[$i]->fon_nombre ?>" name="fon_nombre">
                             </div>
                             <div class="form-group">
                               <label for="fon_identificacion">Identificacion:</label>
-                              <input type="text" class="form-control" id="fon_identificacion" value="<?php echo $lista[$i]->fon_identificacion; ?>" name="fon_identificacion">
+                              <input required type="text" class="form-control" id="fon_identificacion" value="<?php echo $lista[$i]->fon_identificacion ?>" name="fon_identificacion">
                             </div>
-
+                            <div class="form-group">
+                              <label  for="fon_correo">Correo electronico:</label>
+                              <input required type="email" class="form-control" id="fon_correo" value="<?php echo $lista[$i]->fon_correo ?>" name="fon_correo">
+                            </div>
+                            <div class="form-group">
+                              <label for="fon_direccion">Direccion:</label>
+                              <input required type="text" class="form-control" id="fon_direccion" value="<?php echo $lista[$i]->fon_direccion ?>" name="fon_direccion">
+                            </div>
+                            <div class="form-group">
+                              <label for="fon_telefono">Telefono:</label>
+                              <input required type="number" class="form-control" id="fon_telefono" value="<?php echo $lista[$i]->fon_telefono ?>" name="fon_telefono">
+                            </div>
 
 
 

@@ -30,13 +30,13 @@ class MotivosTransaccionModelo extends Conexion{
       $$key=$datos;
       }
     $sql="insert INTO motivos_transaccion(
-    inb_motivo_transaccion, emp_id
+    mot_motivo_transaccion, emp_id
      )
 VALUES(
-    :inb_motivo_transaccion, :emp_id
+    :mot_motivo_transaccion, :emp_id
 )";
   $datos=$this->conectar()->prepare($sql);
-  $datos->bindValue(":inb_motivo_transaccion",$inb_motivo_transaccion);
+  $datos->bindValue(":mot_motivo_transaccion",$mot_motivo_transaccion);
   $datos->bindValue(":emp_id",$emp_id);
   $datos->execute();
   $datos=null;
@@ -61,11 +61,11 @@ VALUES(
       $$key=$datos;
       }
     $sql="update motivos_transaccion
-    SET inb_motivo_transaccion=:inb_motivo_transaccion,emp_id=:emp_id
+    SET mot_motivo_transaccion=:mot_motivo_transaccion,emp_id=:emp_id
     WHERE mot_id=:mot_id";
 
     $datos=$this->conectar()->prepare($sql);
-    $datos->bindValue(":inb_motivo_transaccion",$inb_motivo_transaccion);
+    $datos->bindValue(":mot_motivo_transaccion",$mot_motivo_transaccion);
     $datos->bindValue(":mot_id",$mot_id);
     $datos->bindValue(":emp_id",$emp_id);
     $datos->execute();

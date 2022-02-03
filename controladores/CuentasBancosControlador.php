@@ -42,7 +42,7 @@ class CuentasBancosControlador
 
   public function eliminar()
   {
-    header("location:../../vistas/CuentasBancos.php");
+     header("location:../../vistas/CuentasBancos.php");
     return $this->model->eliminar($_GET["cub_id"]);
   }
 
