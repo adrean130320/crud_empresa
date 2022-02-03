@@ -73,8 +73,16 @@ startblock("contenido");
       <div class="modal-body">
 
         <form enctype="multipart/form-data" class="" action="../controladores/router.php/?con=FondeadoresControlador&&fun=cargarExcel" method="post">
-          <label class="form-label" for="customFile">Seleccionar archivo</label>
-          <input name="fondeadores" type="file" class="form-control" id="customFile" />
+          <div class="form-1-2">
+            <label class="form-label" for="customFile">Seleccionar archivo</label>
+            <input required name="fondeadores" type="file" class="form-control" id="customFile" />
+          </div>
+
+          <div class="barra">
+            <div class="barra_azul" id="barra_estado">
+              <span></span>
+            </div>
+          </div>
 
 
       </div>

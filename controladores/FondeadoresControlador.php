@@ -52,29 +52,28 @@ class FondeadoresControlador
 
   public function cargarExcel()
   {
+    set_time_limit(900);
     //header("location:../../vistas/fondeadores.php");
     $excel=$_FILES["fondeadores"];
-    ;
+    var_dump($excel);
     $ruta=$excel["tmp_name"];
     echo $ruta;
-    $reader = ReaderEntityFactory::createReaderFromFile('../fondeadores.xlsx');
 
-    $reader->open('../fondeadores.xlsx');
+    $reader = ReaderEntityFactory::createXLSXReader();
+    $reader ->open($ruta);
+
+//    $reader = ReaderEntityFactory::createReaderFromFile($ruta);
+
+//    $reader->open($ruta);
 
 foreach ($reader->getSheetIterator() as $sheet) {
     foreach ($sheet->getRowIterator() as $row) {
         // do stuff with the row
         $cells = $row->getCells();
-        $A = $cells[0]->getValue();
-        $B = $cells[1]->getValue();
-        $C = $cells[2]->getValue();
-        $D = $cells[3]->getValue();
-        $E = $cells[4]->getValue();
-      ;
-
-
-
+       $this->model->insertarExcel($cells[0]->getValue(),$cells[1]->getValue(),$cells[2]->getValue(),$cells[3]->getValue(),$cells[4]->getValue());
     }
+
+
 }
 
 $reader->close();

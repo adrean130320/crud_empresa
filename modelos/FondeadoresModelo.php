@@ -81,6 +81,19 @@ VALUES(
     return $verificacion;
   }
 
+  public function insertarExcel($nombre,$identificacion,$correo,$direccion,$telefono)
+  {
+    $sql="insert INTO fondeadores(
+  fon_nombre, fon_identificacion,fon_correo,fon_direccion,fon_telefono
+     )
+VALUES(
+    '$nombre',' $identificacion','$correo','$direccion','$telefono'
+)";
+  $datos=$this->conectar()->exec($sql);
+  $datos=null;
+  return;
+  }
+
 }
 
 
