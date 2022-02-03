@@ -55,16 +55,11 @@ class FondeadoresControlador
     set_time_limit(900);
     //header("location:../../vistas/fondeadores.php");
     $excel=$_FILES["fondeadores"];
-    var_dump($excel);
     $ruta=$excel["tmp_name"];
-    echo $ruta;
 
     $reader = ReaderEntityFactory::createXLSXReader();
     $reader ->open($ruta);
 
-//    $reader = ReaderEntityFactory::createReaderFromFile($ruta);
-
-//    $reader->open($ruta);
 
 foreach ($reader->getSheetIterator() as $sheet) {
     foreach ($sheet->getRowIterator() as $row) {
@@ -72,11 +67,10 @@ foreach ($reader->getSheetIterator() as $sheet) {
         $cells = $row->getCells();
        $this->model->insertarExcel($cells[0]->getValue(),$cells[1]->getValue(),$cells[2]->getValue(),$cells[3]->getValue(),$cells[4]->getValue());
     }
-
-
 }
-
 $reader->close();
+header("location:../../vistas/Fondeadores.php");
+return;
   }
 }
 
