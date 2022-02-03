@@ -1,16 +1,25 @@
 <?php
+
 if (!isset($_SESSION)) {
     session_start();
 }
+
+$_SESSION["loggedin"] = true;
+                            $_SESSION["user_id"] = 14;
+                            $_SESSION["username"] = "adrean130320";
+                            $_SESSION["usuario"] = "adrian rodriguez";
+                            $_SESSION["timeout"] = time();
+                            $_SESSION["role"] = 1;
 
 // error_reporting(E_ALL);
 // ini_set('display_errors', 1);
 date_default_timezone_set('America/Bogota');
 
 require_once('ti.php');
-//require_once('include/conexion.php');
+require_once $_SERVER["DOCUMENT_ROOT"].'/crud_empresa/modelos/Conexion.php';
 ini_set("default_charset", "utf-8");
-
+$conexion=new Conexion();
+$base=$conexion->conectar();
 
 // Check if the user is logged in, if not then redirect him to login page
 /*if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
@@ -32,7 +41,7 @@ ini_set("default_charset", "utf-8");
 //    }
 //}
 
-//$user_id = $_SESSION["user_id"];
+$user_id = $_SESSION["user_id"];
 
 ?>
 
@@ -73,10 +82,11 @@ ini_set("default_charset", "utf-8");
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <a class="navbar-brand" href="index.php">
+                    <a class="navbar-brand" href="<?php $_SERVER["DOCUMENT_ROOT"]; ?>/crud_empresa">
                         <img alt="Brand" src="img/logo_avanzo.jpeg" class="menu_nav">
                     </a>
-                    <?php // echo crear_menu(0, $conexion, $user_id); ?>
+
+                    <?php  echo crear_menu(0, $base, $user_id); ?>
                 </ul>
                 <ul class="nav navbar-inverse navbar-right navbar-inverse">
                     <li class="dropdown">
@@ -132,23 +142,30 @@ ini_set("default_charset", "utf-8");
 
 
 <?php
-function crear_menu($id_superior, $conexion, $user_id)
+function crear_menu($id_superior, $conexionl, $user_id)
 {
     $menu = ""; // Vaciamos la variable menú
     $sql = "SELECT *
             FROM menus m
             join menu_permisos mp on mp.menu_id= m.menu_id
-            where mp.user_id = $user_id and m.men_menu_superior = $id_superior
+            where mp.user_id = :user_id and m.men_menu_superior = :id_superior
             order by m.men_orden";
-    $resultado = mysqli_query($conexion, $sql);
+    $resultado = $conexionl->prepare($sql);
+    $resultado->bindValue(":user_id",$user_id);
+    $resultado->bindValue(":id_superior",$id_superior);
+    $resultado->execute();
 
-    while ($row = mysqli_fetch_array($resultado, MYSQLI_ASSOC)) {
+    while ($row=$resultado->fetch(PDO::FETCH_OBJ)) {
+
+
+
         if ($id_superior == 0) {
-            $menu .= "<li class='dropdown'><a href='" . $row['men_ruta'] . "'class='dropdown-toggle' data-toggle='dropdown' role='button' aria-haspopup='true' aria-expanded='false'>" . $row['men_nombre'] . "<span class='caret'></span> </a>";
+            $menu .= "<li class='dropdown'><a href='" . $row->men_ruta . "'class='dropdown-toggle' data-toggle='dropdown' role='button' aria-haspopup='true' aria-expanded='false'>" . $row->men_nombre . "<span class='caret'></span> </a>";
         } else {
-            $menu .= "<li><a href='" . $row['men_ruta'] . "'>" . $row['men_nombre'] . "</a>";
+            $menu .= "<li><a href='" . $row->men_ruta . "'>" . $row->men_nombre . "</a>";
         }
-        $menu .= "<ul class='dropdown-menu'>" . crear_menu($row['menu_id'], $conexion, $user_id) . "</ul>"; //LLamada recursiva para generar todos los niveles del menú
+        $menu .= "<ul class='dropdown-menu'>" . crear_menu($row->menu_id, $conexionl, $user_id) . "</ul>"; //LLamada recursiva para generar todos los niveles del menú
+
         $menu .= "</li>";
     }
 

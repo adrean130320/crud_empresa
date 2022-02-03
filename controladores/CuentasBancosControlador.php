@@ -25,7 +25,7 @@ class CuentasBancosControlador
     'tpc_id'=>$_POST["tpc_id"],
     'cub_numero_cuenta'=>$_POST["cub_numero_cuenta"]
    );
-     header("location:../../vistas/CuentasBancos.php");
+   header("location:../../vistas/CuentasBancos.php");
    return $this->model->insertar($cuenta_banco);
   }
 

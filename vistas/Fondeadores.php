@@ -9,7 +9,7 @@ startblock("contenido");
 
 ?>
 
-  <button type="button" class="btn btn-success" onclick="location.href='InsertarFondeador.php'">INSERTAR</button>
+
 
   <button type="button" class="btn btn-success" data-toggle="modal" data-target="#insertar">
     INSERTAR
