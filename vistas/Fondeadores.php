@@ -6,7 +6,6 @@ $lista=$fondeadores->listar();
 $count=count($lista);
 startblock("contenido");
 
-
 ?>
 
 
@@ -46,7 +45,7 @@ startblock("contenido");
             </div>
             <div class="form-group">
               <label for="fon_telefono">Telefono:</label>
-              <input required type="number" class="form-control" id="fon_telefono" placeholder="telefono" name="fon_telefono">
+              <input required onKeyUp="maximo(this,10);" onKeyDown="maximo(this,10);" type="number" class="form-control" id="fon_telefono" placeholder="telefono" name="fon_telefono">
             </div>
         </div>
         <div class="modal-footer">

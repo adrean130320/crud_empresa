@@ -1,8 +1,8 @@
 <?php
 require_once $_SERVER["DOCUMENT_ROOT"].'/crud_empresa/modelos/FondeadoresModelo.php';
 
-require_once $_SERVER["DOCUMENT_ROOT"].'/crud_empresa/libs/vendor/autoload.php';
-use PhpOffice\PhpSpreadsheet\{IOFactory,Cell\Coordinate};
+require_once $_SERVER["DOCUMENT_ROOT"].'/crud_empresa/vendor/autoload.php';
+use Box\Spout\Reader\Common\Creator\ReaderEntityFactory;
 /**
  *
  */
@@ -52,24 +52,32 @@ class FondeadoresControlador
 
   public function cargarExcel()
   {
+    //header("location:../../vistas/fondeadores.php");
     $excel=$_FILES["fondeadores"];
-    $archivo=$excel['tmp_name'];
-    $documento= IOFactory::load($archivo);
-      $hojaActual=$documento->getSheet($i);
-      $numeroFilas=$hojaActual->getHighestDataRow();
-      $letra =  $hojaActual->getHighestColumn();
-      $numeroLetra=Coordinate::columnIndexFromString($letra);
-      //este recorre la fila
-      for ($j=2; $j <=$numeroFilas ; $j++) {
-        $datos = array();
-        //este las columnas
-        for ($k=1; $k <=$numeroLetra ; $k++) {
+    ;
+    $ruta=$excel["tmp_name"];
+    echo $ruta;
+    $reader = ReaderEntityFactory::createReaderFromFile('../fondeadores.xlsx');
 
-    $valor=$hojaActual->getCellByColumnAndRow($k,$j);
-          array_push($datos,$valor);
-        }
-        $this->model->insertar($datos);
-      }
+    $reader->open('../fondeadores.xlsx');
+
+foreach ($reader->getSheetIterator() as $sheet) {
+    foreach ($sheet->getRowIterator() as $row) {
+        // do stuff with the row
+        $cells = $row->getCells();
+        $A = $cells[0]->getValue();
+        $B = $cells[1]->getValue();
+        $C = $cells[2]->getValue();
+        $D = $cells[3]->getValue();
+        $E = $cells[4]->getValue();
+      ;
+
+
+
+    }
+}
+
+$reader->close();
   }
 }
 
