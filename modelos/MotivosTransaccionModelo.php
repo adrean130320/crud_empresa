@@ -14,7 +14,8 @@ class MotivosTransaccionModelo extends Conexion{
   //lista los motivos de transaccion
   public function listar()
   {
-  $sql = "SELECT * FROM motivos_transaccion;";
+  $sql = "select DISTINCT mot.*,e.emp_nombre_empresa FROM motivos_transaccion AS mot JOIN empresa as e
+WHERE mot.emp_id=e.emp_id";
   $datos=$this->conectar()->prepare($sql);
   $datos->execute();
   while ($filas[]=$datos->fetch(PDO::FETCH_OBJ)) { }

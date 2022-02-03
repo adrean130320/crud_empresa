@@ -11,6 +11,8 @@ startblock("contenido");
 
 
 
+
+
   <button type="button" class="btn btn-success" data-toggle="modal" data-target="#insertar">
     INSERTAR
   </button>
@@ -152,7 +154,7 @@ startblock("contenido");
                         </div>
                         <div class="modal-footer">
                           <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                          <button type="submit" class="btn btn-warning" >Actualizar</button>
+                          <button id="actualizar" type="submit" class="btn btn-warning" >Actualizar</button>
                         </div>
                           </form>
                       </div>
@@ -190,14 +192,6 @@ startblock("contenido");
         </tbody>
 
     </table>
-
-
-    <script>
-			$(document).ready(function(){
-	    		$('#formulario').click(function(){
-	       		$("#contenido").load("fondeadores.php");
-	    });
-		</script>
 
 
 <?php endblock(); ?>

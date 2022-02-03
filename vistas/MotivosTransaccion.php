@@ -28,7 +28,7 @@ startblock("contenido");
         <div class="input-group mb-3" style="width: 100%">
           <div class="input-group-prepend">
             <label for="emp_id">Empresa:</label>
-            <select name="emp_id" class="form-control select2bs4" style="width: 100%">
+            <select required name="emp_id" class="form-control select2bs4" style="width: 100%">
               <?php for ($i=0; $i < count($empresa)-1; $i++) { ?>
                 <option value="<?php echo $empresa[$i]->emp_id ?>"> <?php echo $empresa[$i]->emp_nombre_empresa ?> </option>
             <?php  } ?>
@@ -38,7 +38,7 @@ startblock("contenido");
 
           <div class="form-group">
     <label for="motivo_transaccion">Motivo transacción:</label>
-    <textarea class="form-control" name="mot_motivo_transaccion" id="motivo_transaccion" style="resize: none" rows="3" onKeyUp="maximo(this,100);" onKeyDown="maximo(this,100);"></textarea>
+    <textarea required class="form-control" name="mot_motivo_transaccion" id="motivo_transaccion" style="resize: none" rows="3" onKeyUp="maximo(this,100);" onKeyDown="maximo(this,100);"></textarea>
   </div>
 
       </div>
@@ -54,9 +54,9 @@ startblock("contenido");
   <table id="example"  class="display dataTable table table-bordered table-hover nowrap">
         <thead>
           <tr>
-          <th>mot_id</th>
-          <th>mot_motivo_transaccion</th>
-          <th>emp_id</th>
+          <th>id</th>
+          <th>motivo transaccion</th>
+          <th>empresa</th>
           <th>editar</th>
           <th>eliminar</th>
         </tr>
@@ -67,7 +67,7 @@ startblock("contenido");
             <tr>
               <td> <?php echo $lista[$i]->mot_id; ?> </td>
               <td> <?php echo $lista[$i]->mot_motivo_transaccion; ?> </td>
-              <td> <?php echo $lista[$i]->emp_id; ?> </td>
+              <td> <?php echo $lista[$i]->emp_nombre_empresa; ?> </td>
               <td>
 
                 <form id="formulario" class="" action="../controladores/router.php/?con=MotivosTransaccionControlador&&fun=actualizar" method="post">
@@ -86,7 +86,8 @@ startblock("contenido");
                           <div class="input-group mb-3" style="width: 100%">
                             <div class="input-group-prepend">
                               <label for="emp_id">Empresa:</label>
-                              <select name="emp_id" class="form-control select2bs4" style="width: 100%">
+                              <select required name="emp_id" class="form-control select2bs4" style="width: 100%">
+                                <option value="<?php echo $lista[$i]->emp_id ?>"> <?php echo $lista[$i]->emp_nombre_empresa ?> </option>
                                 <?php for ($j=0; $j < count($empresa)-1; $j++) { ?>
                                   <option value="<?php echo $empresa[$j]->emp_id ?>"> <?php echo $empresa[$j]->emp_nombre_empresa ?> </option>
                               <?php  } ?>
@@ -97,7 +98,7 @@ startblock("contenido");
 
                           <div class="form-group">
                             <label for="motivo_transaccion">Motivo transacción:</label>
-                            <textarea class="form-control" name="mot_motivo_transaccion" id="motivo_transaccion" style="resize: none" rows="3" onKeyUp="maximo(this,100);" onKeyDown="maximo(this,100);"><?php echo $lista[$i]->mot_motivo_transaccion ?></textarea>
+                            <textarea required class="form-control" name="mot_motivo_transaccion" id="motivo_transaccion" style="resize: none" rows="3" onKeyUp="maximo(this,100);" onKeyDown="maximo(this,100);"><?php echo $lista[$i]->mot_motivo_transaccion ?></textarea>
                           </div>
 
 
