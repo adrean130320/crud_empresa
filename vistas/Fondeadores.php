@@ -72,12 +72,17 @@ startblock("contenido");
         <h4 class="modal-title" id="myModalLabel">CARGAR EXCEL</h4>
       </div>
       <div class="modal-body">
-        <label class="form-label" for="customFile">Seleccionar archivo</label>
-        <input type="file" class="form-control" id="customFile" />
+
+        <form enctype="multipart/form-data" class="" action="../controladores/router.php/?con=FondeadoresControlador&&fun=cargarExcel" method="post">
+          <label class="form-label" for="customFile">Seleccionar archivo</label>
+          <input name="fondeadores" type="file" class="form-control" id="customFile" />
+
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-primary">Cargar</button>
+        <button type="submit" class="btn btn-primary">Cargar</button>
+        </form>
       </div>
     </div>
   </div>

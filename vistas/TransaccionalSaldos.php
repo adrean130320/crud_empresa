@@ -6,7 +6,37 @@ $lista=$TransaccionalSaldosControlador->listar();
 $count=count($lista);
 startblock("contenido");
 ?>
-  <button type="button" class="btn btn-success">INSERTAR</button>
+
+<button type="button" class="btn btn-success" data-toggle="modal" data-target="#cargarExcel">
+  CARGAR EXCEL
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="cargarExcel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">CARGAR EXCEL</h4>
+      </div>
+      <div class="modal-body">
+
+        <!-- falta cargar el formulario -->
+
+        <label class="form-label" for="customFile">Seleccionar archivo</label>
+        <input type="file" class="form-control" id="customFile" />
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary">Cargar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
   <table id="example" class="display dataTable table table-bordered table-hover nowrap">
         <thead>
           <tr>

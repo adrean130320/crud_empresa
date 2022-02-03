@@ -1,6 +1,8 @@
 <?php
-require_once '../modelos/FondeadoresModelo.php';
+require_once $_SERVER["DOCUMENT_ROOT"].'/crud_empresa/modelos/FondeadoresModelo.php';
 
+require_once $_SERVER["DOCUMENT_ROOT"].'/crud_empresa/libs/vendor/autoload.php';
+use PhpOffice\PhpSpreadsheet\{IOFactory,Cell\Coordinate};
 /**
  *
  */
@@ -46,6 +48,28 @@ class FondeadoresControlador
   {
     header("location:../../vistas/Fondeadores.php");
     return $this->model->eliminar($_GET["fon_id"]);
+  }
+
+  public function cargarExcel()
+  {
+    $excel=$_FILES["fondeadores"];
+    $archivo=$excel['tmp_name'];
+    $documento= IOFactory::load($archivo);
+      $hojaActual=$documento->getSheet($i);
+      $numeroFilas=$hojaActual->getHighestDataRow();
+      $letra =  $hojaActual->getHighestColumn();
+      $numeroLetra=Coordinate::columnIndexFromString($letra);
+      //este recorre la fila
+      for ($j=2; $j <=$numeroFilas ; $j++) {
+        $datos = array();
+        //este las columnas
+        for ($k=1; $k <=$numeroLetra ; $k++) {
+
+    $valor=$hojaActual->getCellByColumnAndRow($k,$j);
+          array_push($datos,$valor);
+        }
+        $this->model->insertar($datos);
+      }
   }
 }
 
