@@ -22,7 +22,7 @@ class TipoCuentaControlador
     $tipo_cuenta = array('tpc_descripcion' =>$_POST["tpc_descripcion"]
    );
 
-   if ($this->model->insertar($tipo_cuenta)>1) {
+   if ($this->model->insertar($tipo_cuenta)>0) {
     return header("location:../../vistas/TipoCuenta.php?msg=exito");
    }else{
     return header("location:../../vistas/TipoCuenta.php?msg=existe");
