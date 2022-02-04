@@ -16,8 +16,8 @@ startblock("contenido");
 
 
 
-<button type="button" class="btn btn-success" data-toggle="modal" data-target="#insertar">
-  INSERTAR
+<button type="button" class="btn btn-success pull-right" data-toggle="modal" data-target="#insertar">
+  AÑADIR
 </button>
 
 <!-- Modal -->
@@ -26,7 +26,7 @@ startblock("contenido");
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">INSERTAR CUENTA DE BANCO</h4>
+        <h4 class="modal-title" id="myModalLabel">AÑADIR CUENTA DE BANCO</h4>
       </div>
       <div class="modal-body">
 
@@ -83,8 +83,8 @@ startblock("contenido");
           <th>banco</th>
           <th>tipo de cuenta</th>
           <th>numero de cuenta</th>
-          <th>editar</th>
-          <th>eliminar</th>
+          <th>acciones</th>
+
         </tr>
         </thead>
         <tbody>
@@ -97,7 +97,7 @@ startblock("contenido");
               <td> <?php echo $lista[$i]->cub_numero_cuenta; ?> </td>
               <td>
 
-                <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#actualizar<?php echo $i; ?>" >ACTUALIZAR</button>
+                <button type="button" class="btn btn-warning 	glyphicon glyphicon-edit" data-toggle="modal" data-target="#actualizar<?php echo $i; ?>" ></button>
                   <!-- Modal -->
                   <div class="modal fade" id="actualizar<?php echo $i; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                     <div class="modal-dialog" role="document">
@@ -151,14 +151,12 @@ startblock("contenido");
                           </form>
                       </div>
                     </div>
+                    </div>
 
 
 
 
-              </td>
-
-
-                <td>   <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#eliminar<?php echo $i; ?>">ELIMINAR</button>
+                 <button type="button" class="btn btn-danger glyphicon glyphicon-trash" data-toggle="modal" data-target="#eliminar<?php echo $i; ?>"></button>
                   <!-- Modal -->
                   <div class="modal fade" id="eliminar<?php echo $i; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                     <div class="modal-dialog" role="document">
