@@ -70,8 +70,8 @@ startblock("contenido");
               <td> <?php echo $lista[$i]->emp_nombre_empresa; ?> </td>
               <td>
 
-                <form id="formulario" class="" action="../controladores/router.php/?con=MotivosTransaccionControlador&&fun=actualizar" method="post">
-                  <input type="hidden" name="mot_id" value="<?php echo $lista[$i]->mot_id; ?>">
+
+
                   <button type="button" class="btn btn-warning glyphicon glyphicon-edit" data-toggle="modal" data-target="#actualizar<?php echo $i; ?>" ></button>
                   <!-- Modal -->
                   <div class="modal fade" id="actualizar<?php echo $i; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -82,7 +82,8 @@ startblock("contenido");
                           <h4 class="modal-title" id="myModalLabel">ACTUALIZAR</h4>
                         </div>
                         <div class="modal-body">
-
+                          <form id="formulario" class="" action="../controladores/router.php/?con=MotivosTransaccionControlador&&fun=actualizar" method="post">
+                            <input type="hidden" name="mot_id" value="<?php echo $lista[$i]->mot_id; ?>">
                           <div class="input-group mb-3" style="width: 100%">
                             <div class="input-group-prepend">
                               <label for="emp_id">Empresa:</label>
@@ -104,8 +105,9 @@ startblock("contenido");
                           <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
                             <button type="submit" class="btn btn-warning" >Actualizar</button>
+                            </form>
                           </div>
-                          </form>
+
                         </div>
                       </div>
                       </div>

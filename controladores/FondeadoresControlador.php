@@ -27,8 +27,11 @@ class FondeadoresControlador
     'fon_direccion'=>$_POST["fon_direccion"],
     'fon_telefono'=>$_POST["fon_telefono"]
    );
-   header("location:../../vistas/Fondeadores.php");
-   return $this->model->insertar($fondeador);
+   if ($this->model->insertar($fondeador)>1) {
+    return header("location:../../vistas/Fondeadores.php?msg=exito");
+   }else{
+    return header("location:../../vistas/Fondeadores.php?msg=existe");
+   }
   }
 
   public function actualizar()

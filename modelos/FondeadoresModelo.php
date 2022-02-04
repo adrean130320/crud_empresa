@@ -29,12 +29,15 @@ class FondeadoresModelo extends Conexion
     foreach ($fondeadores as $key=>$datos) {
       $$key=$datos;
       }
-    $sql="insert INTO fondeadores(
-  fon_nombre, fon_identificacion,fon_correo,fon_direccion,fon_telefono
-     )
-VALUES(
-    :fon_nombre, :fon_identificacion,:fon_correo,:fon_direccion,:fon_telefono
-)";
+    $sql="insert into fondeadores
+    (fon_nombre,fon_identificacion,fon_correo,fon_direccion,
+    fon_telefono) SELECT
+    :fon_nombre,:fon_identificacion,:fon_correo,:fon_direccion,:fon_telefono
+    FROM dual
+    WHERE NOT EXISTS (select * from fondeadores
+    where fon_identificacion=:fon_identificacion)
+    LIMIT 1
+    ";
   $datos=$this->conectar()->prepare($sql);
   $datos->bindValue(":fon_nombre",$fon_nombre);
   $datos->bindValue(":fon_identificacion",$fon_identificacion);
@@ -83,15 +86,20 @@ VALUES(
 
   public function insertarExcel($nombre,$identificacion,$correo,$direccion,$telefono)
   {
-    $sql="insert INTO fondeadores(
-  fon_nombre, fon_identificacion,fon_correo,fon_direccion,fon_telefono
-     )
-VALUES(
-    '$nombre',' $identificacion','$correo','$direccion','$telefono'
-)";
-  $datos=$this->conectar()->exec($sql);
+$sql="insert into fondeadores
+(fon_nombre,fon_identificacion,fon_correo,fon_direccion,
+fon_telefono) SELECT
+:fon_nombre,:fon_identificacion,:fon_correo,:fon_direccion,:fon_telefono
+FROM dual
+WHERE NOT EXISTS (select * from fondeadores
+where fon_identificacion=:fon_identificacion)
+LIMIT 1
+";
+  $datos=$this->conectar()->prepare($sql);
+  $datos->execute();
+  $verificacion=$datos->rowCount();
   $datos=null;
-  return;
+  return $verificacion;
   }
 
 }
