@@ -5,15 +5,14 @@ $fondeadores=new FondeadoresControlador();
 $lista=$fondeadores->listar();
 $count=count($lista);
 startblock("contenido");
-
 ?>
 
 
 
 
 
-  <button type="button" class="btn btn-success" data-toggle="modal" data-target="#insertar">
-    INSERTAR
+  <button type="button" class="btn btn-success pull-right" data-toggle="modal" data-target="#insertar">
+    AÑADIR
   </button>
 
   <!-- Modal -->
@@ -22,7 +21,7 @@ startblock("contenido");
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title" id="myModalLabel">INSERTAR FONDEADOR</h4>
+          <h4 class="modal-title" id="myModalLabel">AÑADIR FONDEADOR</h4>
         </div>
         <div class="modal-body">
 
@@ -33,7 +32,7 @@ startblock("contenido");
             </div>
             <div class="form-group">
               <label for="fon_identificacion">Identificacion:</label>
-              <input required type="text" class="form-control" id="fon_identificacion" placeholder="Identificacion" name="fon_identificacion">
+              <input required type="number" class="form-control" id="fon_identificacion" placeholder="Identificacion" name="fon_identificacion">
             </div>
             <div class="form-group">
               <label  for="fon_correo">Correo electronico:</label>
@@ -58,7 +57,7 @@ startblock("contenido");
   </div>
 
   <!-- Button trigger modal -->
-<button type="button" class="btn btn-success" data-toggle="modal" data-target="#cargarExcel">
+<button type="button" class="btn btn-success pull-right" data-toggle="modal" data-target="#cargarExcel">
   CARGAR EXCEL
 </button>
 
@@ -107,8 +106,8 @@ startblock("contenido");
           <th>correo</th>
           <th>direccion</th>
           <th>telefono</th>
-          <th>editar</th>
-          <th>eliminar</th>
+          <th>acciones</th>
+
         </tr>
         </thead>
         <tbody>
@@ -123,10 +122,58 @@ startblock("contenido");
               <td> <?php echo $lista[$i]->fon_telefono; ?> </td>
               <td>
 
-                
 
-              </td>
-              <td>   <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#eliminar<?php echo $i; ?>">ELIMINAR</button>
+                <button type="button" class="btn btn-warning 	glyphicon glyphicon-edit" data-toggle="modal" data-target="#actualizar<?php echo $i; ?>" ></button>
+                  <!-- Modal -->
+                  <div class="modal fade" id="actualizar<?php echo $i; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                          <h4 class="modal-title" id="myModalLabel">ACTUALIZAR</h4>
+                        </div>
+                        <div class="modal-body">
+
+
+                          <form id="formulario" class="" action="../controladores/router.php/?con=CuentasBancosControlador&&fun=actualizar" method="post">
+                            <input type="hidden" name="fon_id" value="<?php echo $lista[$i]->fon_id; ?>">
+
+
+                            <div class="form-group">
+                              <label for="fon_nombre">Nombres:</label>
+                              <input required type="text" class="form-control" id="fon_nombre" value="<?php echo $lista[$i]->fon_nombre; ?>" name="fon_nombre">
+                            </div>
+                            <div class="form-group">
+                              <label for="fon_identificacion">Identificacion:</label>
+                              <input required type="number" class="form-control" id="fon_identificacion" value=<?php echo $lista[$i]->fon_identificacion; ?> name="fon_identificacion">
+                            </div>
+                            <div class="form-group">
+                              <label  for="fon_correo">Correo electronico:</label>
+                              <input required type="email" class="form-control" id="fon_correo" value="<?php echo $lista[$i]->fon_correo; ?>" name="fon_correo">
+                            </div>
+                            <div class="form-group">
+                              <label for="fon_direccion">Direccion:</label>
+                              <input required type="text" class="form-control" id="fon_direccion" value="<?php echo $lista[$i]->fon_direccion; ?>" name="fon_direccion">
+                            </div>
+                            <div class="form-group">
+                              <label for="fon_telefono">Telefono:</label>
+                              <input required onKeyUp="maximo(this,10);" onKeyDown="maximo(this,10);" type="number" class="form-control" id="fon_telefono" value="<?php echo $lista[$i]->fon_telefono; ?>" name="fon_telefono">
+                            </div>
+
+
+
+                          </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                          <button type="submit" class="btn btn-warning" >Actualizar</button>
+                        </div>
+                          </form>
+                      </div>
+                    </div>
+                    </div>
+
+
+                <button type="button" class="btn btn-danger glyphicon glyphicon-trash" data-toggle="modal" data-target="#eliminar<?php echo $i; ?>"></button>
                 <!-- Modal -->
                 <div class="modal fade" id="eliminar<?php echo $i; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                   <div class="modal-dialog" role="document">
