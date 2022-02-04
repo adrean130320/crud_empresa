@@ -44,10 +44,12 @@ startblock("contenido");
   <table id="example" class="display dataTable table table-bordered table-hover nowrap">
         <thead>
           <tr>
-            <th>id</th>
+          <th>id</th>
           <th>fondeador</th>
           <th>mes de carga</th>
           <th>valor de fondeo</th>
+          <th>fecha inicio</th>
+          <th>fecha fin</th>
         </tr>
         </thead>
         <tbody>
@@ -55,9 +57,11 @@ startblock("contenido");
             ?>
             <tr>
               <td> <?php echo $lista[$i]->fot_id; ?> </td>
-              <td> <?php echo $lista[$i]->fon_id; ?> </td>
+              <td> <?php echo $lista[$i]->fon_nombre; ?> </td>
               <td> <?php echo $lista[$i]->fot_mes_carga; ?> </td>
               <td> <?php echo $lista[$i]->fot_valor_fondeo; ?> </td>
+              <td> <?php echo $lista[$i]->fot_fecha_inicio; ?> </td>
+              <td> <?php echo $lista[$i]->fot_fecha_fin; ?> </td>
             </tr>
             <?php
           } ?>

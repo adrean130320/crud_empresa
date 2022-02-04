@@ -30,12 +30,14 @@ class CuentasBancosModelo extends Conexion
     foreach ($cuenta_banco as $key=>$datos) {
       $$key=$datos;
       }
-    $sql="insert INTO cuenta_bancos(
-    ban_id,tpc_id,cub_numero_cuenta
-     )
-VALUES(
+    $sql="insert into cuenta_bancos
+    (ban_id,tpc_id,cub_numero_cuenta) SELECT
     :ban_id,:tpc_id,:cub_numero_cuenta
-)";
+    FROM dual
+    WHERE NOT EXISTS (select * from cuenta_bancos
+    where ban_id=:ban_id && tpc_id=:tpc_id && cub_numero_cuenta=:cub_numero_cuenta)
+    LIMIT 1
+    ";
   $datos=$this->conectar()->prepare($sql);
   $datos->bindValue(":ban_id",$ban_id);
   $datos->bindValue(":tpc_id",$tpc_id);

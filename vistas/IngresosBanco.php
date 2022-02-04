@@ -3,6 +3,7 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/crud_empresa/libs/layout.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/crud_empresa/controladores/IngresosBancoControlador.php';
 $IngresosBanco=new IngresosBancoControlador();
 $lista=$IngresosBanco->listar();
+array_pop($lista);
 startblock("contenido");
 ?>
 
@@ -19,15 +20,18 @@ startblock("contenido");
         <h4 class="modal-title" id="myModalLabel">CARGAR EXCEL</h4>
       </div>
       <div class="modal-body">
+        <form class="" enctype="multipart/form-data" action="../controladores/router.php?con=IngresosBancoControlador&&fun=cargarExcel" method="post">
+          <!-- falta cargar el formulario -->
+          <label class="form-label" for="customFile">Seleccionar archivo</label>
+          <input type="file" name="ingresos" class="form-control" id="customFile" />
 
-        <!-- falta cargar el formulario -->
-        <label class="form-label" for="customFile">Seleccionar archivo</label>
-        <input type="file" class="form-control" id="customFile" />
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-primary">Cargar</button>
+        <button type="submit" class="btn btn-primary">Cargar</button>
       </div>
+      </form>
     </div>
   </div>
 </div>
@@ -47,15 +51,15 @@ startblock("contenido");
       </tr>
       </thead>
       <tbody>
-        <?php for ($i=0; $i <count($lista)-1 ; $i++) { ?>
+        <?php foreach ($lista as $datos) { ?>
           <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td> <?php echo $datos->inb_id; ?> </td>
+            <td> <?php echo $datos->inb_fecha_sistema; ?> </td>
+            <td> <?php echo $datos->cub_id; ?> </td>
+            <td> <?php echo $datos->inb_tansaccion; ?> </td>
+            <td> <?php echo $datos->inb_motivo_transaccion; ?> </td>
+            <td> <?php echo $datos->emp_id; ?> </td>
+            <td> <?php echo $datos->inb_monto_transaccion; ?> </td>
           </tr>
         <?php } ?>
       </tbody>

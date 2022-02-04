@@ -14,7 +14,8 @@ class TransaccionalFondeoModelo extends Conexion
   //lista de transaccional de fondeo
   public function listar()
   {
-  $sql = "SELECT * FROM transaccional_fondeo;";
+  $sql = "SELECT distinct trf.*,f.fon_nombre FROM transaccional_fondeo as trf join fondeadores f
+  where trf.fon_id=f.fon_id;";
   $datos=$this->conectar()->prepare($sql);
   $datos->execute();
   while ($filas[]=$datos->fetch(PDO::FETCH_OBJ)) { }

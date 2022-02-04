@@ -10,6 +10,17 @@ $count=count($lista);
 startblock("contenido");
 ?>
 
+<?php if (!empty($_GET["msg"])&&$_GET["msg"]=="exito"): ?>
+  <div class="alert alert-success" role="alert">
+    motivo de transaccion añadido con exito
+</div>
+<?php endif; ?>
+<?php if (!empty($_GET["msg"])&& $_GET["msg"]=="existe"): ?>
+  <div class="alert alert-danger" role="alert">
+    el motivo ya existe
+</div>
+<?php endif; ?>
+
 <button type="button" class="btn btn-success pull-right" data-toggle="modal" data-target="#insertar">
   AÑADIR
 </button>

@@ -28,12 +28,17 @@ class TipoCuentaModelo extends Conexion{
     foreach ($tipo_cuenta as $key=>$datos) {
       $$key=$datos;
       }
-    $sql="insert INTO tipo_cuenta(
-    tpc_descripcion
-     )
-VALUES(
-    :tpc_descripcion
-)";
+
+$sql="insert into tipo_cuenta
+(tpc_descripcion)
+ SELECT
+:tpc_descripcion
+FROM dual
+WHERE NOT EXISTS (select * from tipo_cuenta
+where tpc_descripcion=:tpc_descripcion)
+LIMIT 1
+";
+
   $datos=$this->conectar()->prepare($sql);
   $datos->bindValue(":tpc_descripcion",$tpc_descripcion);
   $datos->execute();

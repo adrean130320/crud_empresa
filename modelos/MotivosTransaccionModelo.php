@@ -30,12 +30,17 @@ WHERE mot.emp_id=e.emp_id";
     foreach ($motivo_transaccion as $key=>$datos) {
       $$key=$datos;
       }
-    $sql="insert INTO motivos_transaccion(
-    mot_motivo_transaccion, emp_id
-     )
-VALUES(
-    :mot_motivo_transaccion, :emp_id
-)";
+$sql="insert into motivos_transaccion
+(mot_motivo_transaccion,emp_id)
+ SELECT
+:mot_motivo_transaccion,:emp_id
+FROM dual
+WHERE NOT EXISTS (select * from motivos_transaccion
+where mot_motivo_transaccion=:mot_motivo_transaccion)
+LIMIT 1
+";
+
+
   $datos=$this->conectar()->prepare($sql);
   $datos->bindValue(":mot_motivo_transaccion",$mot_motivo_transaccion);
   $datos->bindValue(":emp_id",$emp_id);
@@ -73,6 +78,16 @@ VALUES(
     $verificacion=$datos->rowCount();
     $datos=null;
     return $verificacion;
+  }
+  public function buscar($motivo)
+  {
+  $sql = "select  * FROM motivos_transaccion WHERE mot_motivo_transaccion like :mot_motivo_transaccion";
+  $datos=$this->conectar()->prepare($sql);
+  $datos->bindValue(":mot_motivo_transaccion",$motivo);
+  $datos->execute();
+  while ($fila[]=$datos->fetch(PDO::FETCH_OBJ)) { }
+  $datos=null;
+  return $fila;
   }
 }
  ?>

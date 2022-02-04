@@ -22,8 +22,14 @@ class MotivosTransaccionControlador
     $motivo_transaccion = array('mot_motivo_transaccion' =>$_POST["mot_motivo_transaccion"],
     'emp_id'=>$_POST["emp_id"]
    );
-   header("location:../../vistas/MotivosTransaccion.php");
-   return $this->model->insertar($motivo_transaccion);
+   if($this->model->insertar($motivo_transaccion)>0){
+    return header("location:../../vistas/MotivosTransaccion.php?msg=exito");
+   }else {
+    return header("location:../../vistas/MotivosTransaccion.php?msg=existe");
+   }
+
+
+
   }
 
   public function actualizar()
@@ -41,6 +47,10 @@ class MotivosTransaccionControlador
   {
     header("location:../../vistas/MotivosTransaccion.php");
     return $this->model->eliminar($_GET["mot_id"]);
+  }
+  public function buscar($motivo)
+  {
+    return $this->model->buscar($motivo);
   }
 
 }

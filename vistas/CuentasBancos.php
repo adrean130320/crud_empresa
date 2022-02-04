@@ -13,7 +13,16 @@ $bancos=$BancoControlador->listar();
 $count=count($lista);
 startblock("contenido");
 ?>
-
+<?php if (!empty($_GET["msg"])&&$_GET["msg"]=="existe"): ?>
+  <div class="alert alert-danger" role="alert">
+    la cuenta ya existe
+</div>
+<?php endif; ?>
+<?php if (!empty($_GET["msg"])&& $_GET["msg"]=="exito"): ?>
+  <div class="alert alert-success" role="alert">
+    cuenta añadida con exito
+</div>
+<?php endif; ?>
 
 
 <button type="button" class="btn btn-success pull-right" data-toggle="modal" data-target="#insertar">
