@@ -62,18 +62,25 @@ class FondeadoresControlador
 
     $reader = ReaderEntityFactory::createXLSXReader();
     $reader ->open($ruta);
-
+    $existentes = array();
 
 foreach ($reader->getSheetIterator() as $sheet) {
     foreach ($sheet->getRowIterator() as $row) {
-        // do stuff with the row
         $cells = $row->getCells();
-       $this->model->insertarExcel($cells[0]->getValue(),$cells[1]->getValue(),$cells[2]->getValue(),$cells[3]->getValue(),$cells[4]->getValue());
+      if($this->model->insertarExcel($cells[0]->getValue(),$cells[1]->getValue(),$cells[2]->getValue(),$cells[3]->getValue(),$cells[4]->getValue())<1){
+        $fondeador = array('fon_nombre' =>$cells[0]->getValue() ,
+        'fon_identificacion'=>$cells[1]->getValue() ,
+        'fon_correo'=>$cells[2]->getValue() ,
+        'fon_direccion'=>$cells[3]->getValue() ,
+        'fon_telefono'=>$cells[4]->getValue()
+        );
+        array_push($existentes,$fondeador);
+      }
     }
 }
 $reader->close();
 header("location:../../vistas/Fondeadores.php");
-return;
+return $existentes;
   }
 }
 

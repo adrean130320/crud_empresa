@@ -7,9 +7,10 @@ $count=count($lista);
 startblock("contenido");
 ?>
 
-<button type="button" class="btn btn-success" data-toggle="modal" data-target="#cargarExcel">
+<button type="button" class="btn btn-success pull-right" data-toggle="modal" data-target="#cargarExcel">
   CARGAR EXCEL
 </button>
+<br>
 
 <!-- Modal -->
 <div class="modal fade" id="cargarExcel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -22,11 +23,13 @@ startblock("contenido");
       <div class="modal-body">
 
         <!-- falta cargar el formulario -->
-        
         <label class="form-label" for="customFile">Seleccionar archivo</label>
         <input type="file" class="form-control" id="customFile" />
-
-
+        <div id="date-picker-example" class="md-form md-outline input-with-post-icon datepicker" inline="true">
+          <label for="example">seleccionar fecha de carga</label>
+          <input placeholder="Select date" type="date" id="example" name="fot_mes_carga" class="form-control">
+          <i class="fas fa-calendar input-prefix"></i>
+        </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
@@ -44,7 +47,7 @@ startblock("contenido");
             <th>id</th>
           <th>fondeador</th>
           <th>mes de carga</th>
-          <th>fot_valor_fondeo</th>
+          <th>valor de fondeo</th>
         </tr>
         </thead>
         <tbody>

@@ -7,10 +7,10 @@ $count=count($lista);
 startblock("contenido");
 ?>
 
-<button type="button" class="btn btn-success" data-toggle="modal" data-target="#cargarExcel">
+<button type="button" class="btn btn-success pull-right" data-toggle="modal" data-target="#cargarExcel">
   CARGAR EXCEL
 </button>
-
+<br>
 <!-- Modal -->
 <div class="modal fade" id="cargarExcel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">

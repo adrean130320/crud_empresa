@@ -96,12 +96,16 @@ where fon_identificacion=:fon_identificacion)
 LIMIT 1
 ";
   $datos=$this->conectar()->prepare($sql);
+  $datos->bindValue(":fon_nombre",$nombre);
+  $datos->bindValue(":fon_identificacion",$identificacion);
+  $datos->bindValue(":fon_correo",$correo);
+  $datos->bindValue(":fon_direccion",$direccion);
+  $datos->bindValue(":fon_telefono",$telefono);
   $datos->execute();
   $verificacion=$datos->rowCount();
   $datos=null;
   return $verificacion;
   }
-
 }
 
 

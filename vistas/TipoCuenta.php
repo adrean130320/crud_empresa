@@ -10,7 +10,7 @@ startblock("contenido");
 <button type="button" class="btn btn-success pull-right" data-toggle="modal" data-target="#insertar">
   AÑADIR
 </button>
-
+<br>
 <!-- Modal -->
 <div class="modal fade" id="insertar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">

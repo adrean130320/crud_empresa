@@ -10,7 +10,6 @@ class IngresosBancoModelo extends Conexion{
   {
 
   }
-
   //lista los igresos
   public function listar()
   {
