@@ -17,7 +17,17 @@ startblock("contenido");
 <?php endif; ?>
 <?php if (!empty($_GET["msg"])&& $_GET["msg"]=="existe"): ?>
   <div class="alert alert-danger" role="alert">
-    el motivo ya existe
+    el motivo de transaccion ya existe
+</div>
+<?php endif; ?>
+<?php if (!empty($_GET["msg"])&&$_GET["msg"]=="errdel"): ?>
+  <div class="alert alert-danger" role="alert">
+    intenta de nuevo
+</div>
+<?php endif; ?>
+<?php if (!empty($_GET["msg"])&& $_GET["msg"]=="del"): ?>
+  <div class="alert alert-success" role="alert">
+    motivo de transaccion borrado con exito
 </div>
 <?php endif; ?>
 

@@ -17,6 +17,16 @@ tipo de cuenta añadido con exito
 El tipo de cuenta ya existe
 </div>
 <?php endif; ?>
+<?php if (!empty($_GET["msg"])&&$_GET["msg"]=="errdel"): ?>
+  <div class="alert alert-danger" role="alert">
+    intenta de nuevo
+</div>
+<?php endif; ?>
+<?php if (!empty($_GET["msg"])&& $_GET["msg"]=="del"): ?>
+  <div class="alert alert-success" role="alert">
+    tipo de cuenta borrado con exito
+</div>
+<?php endif; ?>
 
 <button type="button" class="btn btn-success pull-right" data-toggle="modal" data-target="#insertar">
   AÑADIR

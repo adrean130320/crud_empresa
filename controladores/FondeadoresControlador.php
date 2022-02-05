@@ -49,8 +49,12 @@ class FondeadoresControlador
 
   public function eliminar()
   {
-    header("location:../../vistas/Fondeadores.php");
-    return $this->model->eliminar($_GET["fon_id"]);
+    if ($this->model->eliminar($_GET["fon_id"])>0) {
+      return header("location:../../vistas/Fondeadores.php?msg=del");
+    }else {
+      return header("location:../../vistas/Fondeadores.php?msg=errdel");
+    }
+
   }
 
   public function cargarExcel()

@@ -44,8 +44,12 @@ class TipoCuentaControlador
 
   public function eliminar()
   {
-    header("location:../../vistas/TipoCuenta.php");
-    return $this->model->eliminar($_GET["tpc_id"]);
+    if ($this->model->eliminar($_GET["tpc_id"])>0) {
+      return header("location:../../vistas/TipoCuenta.php?msg=del");
+    }else {
+      return header("location:../../vistas/TipoCuenta.php?msg=errdel");
+    }
+
   }
 
   public function buscar($id)

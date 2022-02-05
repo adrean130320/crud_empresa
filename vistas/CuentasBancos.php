@@ -23,6 +23,16 @@ startblock("contenido");
     cuenta añadida con exito
 </div>
 <?php endif; ?>
+<?php if (!empty($_GET["msg"])&&$_GET["msg"]=="errdel"): ?>
+  <div class="alert alert-danger" role="alert">
+    intenta de nuevo
+</div>
+<?php endif; ?>
+<?php if (!empty($_GET["msg"])&& $_GET["msg"]=="del"): ?>
+  <div class="alert alert-success" role="alert">
+    cuenta borrada con exito
+</div>
+<?php endif; ?>
 
 
 <button type="button" class="btn btn-success pull-right" data-toggle="modal" data-target="#insertar">

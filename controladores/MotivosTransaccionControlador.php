@@ -45,8 +45,12 @@ class MotivosTransaccionControlador
 
   public function eliminar()
   {
-    header("location:../../vistas/MotivosTransaccion.php");
-    return $this->model->eliminar($_GET["mot_id"]);
+    if ($this->model->eliminar($_GET["mot_id"])>0) {
+      return header("location:../../vistas/MotivosTransaccion.php?msg=del");
+    }else {
+      return header("location:../../vistas/MotivosTransaccion.php?msg=errdel");
+    }
+
   }
   public function buscar($motivo)
   {
