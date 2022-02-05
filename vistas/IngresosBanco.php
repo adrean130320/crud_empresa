@@ -23,7 +23,7 @@ startblock("contenido");
         <form class="" enctype="multipart/form-data" action="../controladores/router.php?con=IngresosBancoControlador&&fun=cargarExcel" method="post">
           <!-- falta cargar el formulario -->
           <label class="form-label" for="customFile">Seleccionar archivo</label>
-          <input type="file" name="ingresos" class="form-control" id="customFile" />
+          <input required type="file" name="ingresos" class="form-control" id="customFile" />
 
 
       </div>

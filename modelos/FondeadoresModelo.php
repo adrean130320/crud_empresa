@@ -106,11 +106,17 @@ LIMIT 1
   $datos=null;
   return $verificacion;
   }
+  public function buscar($fondeador)
+  {
+  $sql = "select  fon_identificacion FROM fondeadores WHERE fon_identificacion like :fon_identificacion";
+  $datos=$this->conectar()->prepare($sql);
+  $datos->bindValue(":fon_identificacion",$fondeador);
+  $datos->execute();
+  while ($fila[]=$datos->fetch(PDO::FETCH_OBJ)) { }
+  $datos=null;
+  return $fila;
+  }
 }
-
-
-
-
 
 
 

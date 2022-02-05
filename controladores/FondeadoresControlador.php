@@ -27,7 +27,7 @@ class FondeadoresControlador
     'fon_direccion'=>$_POST["fon_direccion"],
     'fon_telefono'=>$_POST["fon_telefono"]
    );
-   if ($this->model->insertar($fondeador)>1) {
+   if ($this->model->insertar($fondeador)>0) {
     return header("location:../../vistas/Fondeadores.php?msg=exito");
    }else{
     return header("location:../../vistas/Fondeadores.php?msg=existe");
@@ -59,7 +59,7 @@ class FondeadoresControlador
     //header("location:../../vistas/fondeadores.php");
     $excel=$_FILES["fondeadores"];
     $ruta=$excel["tmp_name"];
-
+    if ($rest = substr($excel["name"], -4)=="xlsx") {
     $reader = ReaderEntityFactory::createXLSXReader();
     $reader ->open($ruta);
     $existentes = array();
@@ -79,9 +79,17 @@ foreach ($reader->getSheetIterator() as $sheet) {
     }
 }
 $reader->close();
+}
 header("location:../../vistas/Fondeadores.php");
 return $existentes;
   }
+
+  public function buscar($identificacion)
+  {
+    return $this->model->buscar($identificacion);
+  }
+
+
 }
 
 

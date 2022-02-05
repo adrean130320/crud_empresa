@@ -1,5 +1,8 @@
 <?php
 require_once '../modelos/TransaccionalFondeoModelo.php';
+require_once '../controladores/FondeadoresControlador.php';
+require_once $_SERVER["DOCUMENT_ROOT"].'/crud_empresa/vendor/autoload.php';
+use Box\Spout\Reader\Common\Creator\ReaderEntityFactory;
 
 /**
  *
@@ -17,31 +20,35 @@ class TransaccionalFondeoControlador
     return $this->model->listar();
   }
 
-  public function insertar()
+  public function cargarExcel()
   {
-    $transaccional_fondeo = array(
-    'fon_id'=>$_POST["fon_id"],
-    'fot_mes_cierre'=>$_POST["fot_mes_cierre"],
-    'fot_valor_fondeo'=>$_POST["fot_valor_fondeo"]
-   );
-   return $this->model->insertar($transaccional_fondeo);
-  }
-
-  public function actualizar()
-  {
-    $transaccional_fondeo = array('fon_id' =>$_POST["fon_id"],
-    'fot_mes_cierre'=>$_POST["fot_mes_cierre"],
-    'tpc_id'=>$_POST["tpc_id"],
-    'fot_valor_fondeo'=>$_POST["fot_valor_fondeo"],
-    'fot_id'=>$_POST["fot_id"],
-   );
-   return $this->model->actualizar($transaccional_fondeo);
-  }
-
-  public function eliminar()
-  {
-    header("location:../../vistas/TransaccionalFondeo.php");
-    return $this->model->eliminar($_GET["fot_id"]);
+    $fondeador = new FondeadoresControlador();
+    $excel=$_FILES["trs_fondeo"];
+    set_time_limit(900);
+    $ruta=$excel["tmp_name"];
+    if ($rest = substr($excel["name"], -4)=="xlsx") {
+//       // code...
+//
+        $reader = ReaderEntityFactory::createXLSXReader();
+        $reader ->open($ruta);
+//
+  foreach ($reader->getSheetIterator() as $sheet) {
+      foreach ($sheet->getRowIterator() as $row) {
+          $cells = $row->getCells();
+          echo $cells[0]->getValue();
+          $documento= $fondeador->buscar($cells[0]->getValue());
+//         var_dump($motivo);
+//          if (count($motivo)>1) {
+//           $this->model->insertarExcel($cells[0]->getValue(),$cells[1]->getValue(),$cells[2]->getValue(),$cells[3]->getValue(),$motivo[0]->emp_id,$cells[4]->getValue());
+//          }
+//          else {
+//            $this->model->insertarExcel($cells[0]->getValue(),$cells[1]->getValue(),$cells[2]->getValue(),$cells[3]->getValue(),'0',$cells[4]->getValue());
+//          }
+      }
+    }
+    $reader->close();
+   }
+//  return header("location:../vistas/IngresosBanco.php");
   }
 
 }

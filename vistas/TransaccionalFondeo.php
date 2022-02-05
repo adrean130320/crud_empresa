@@ -22,19 +22,24 @@ startblock("contenido");
       </div>
       <div class="modal-body">
 
+
+        <form enctype="multipart/form-data" class="" action="../controladores/router.php?con=TransaccionalFondeoControlador&&fun=cargarExcel" method="post">
+
+
         <!-- falta cargar el formulario -->
         <label class="form-label" for="customFile">Seleccionar archivo</label>
-        <input type="file" class="form-control" id="customFile" />
+        <input required name="trs_fondeo" type="file" class="form-control" id="customFile" />
         <div id="date-picker-example" class="md-form md-outline input-with-post-icon datepicker" inline="true">
           <label for="example">seleccionar fecha de carga</label>
-          <input placeholder="Select date" type="date" id="example" name="fot_mes_carga" class="form-control">
+          <input required placeholder="Select date" type="date" id="example" name="fot_mes_carga" class="form-control">
           <i class="fas fa-calendar input-prefix"></i>
         </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-primary">Cargar</button>
+        <button type="submit" class="btn btn-primary">Cargar</button>
       </div>
+      </form>
     </div>
   </div>
 </div>

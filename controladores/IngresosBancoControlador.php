@@ -23,29 +23,32 @@ class IngresosBancoControlador
   {
     $MotivosTransaccion = new MotivosTransaccionControlador();
     $excel=$_FILES["ingresos"];
-
     set_time_limit(900);
     $ruta=$excel["tmp_name"];
+    if ($rest = substr($excel["name"], -4)=="xlsx") {
+      // code...
 
     $reader = ReaderEntityFactory::createXLSXReader();
     $reader ->open($ruta);
 
 foreach ($reader->getSheetIterator() as $sheet) {
     foreach ($sheet->getRowIterator() as $row) {
+      //echo $row->
+      echo  count($row->toArray());
         $cells = $row->getCells();
         $motivo= $MotivosTransaccion->buscar($cells[3]->getValue());
-        var_dump($motivo);
          if (count($motivo)>1) {
           $this->model->insertarExcel($cells[0]->getValue(),$cells[1]->getValue(),$cells[2]->getValue(),$cells[3]->getValue(),$motivo[0]->emp_id,$cells[4]->getValue());
          }
          else {
            $this->model->insertarExcel($cells[0]->getValue(),$cells[1]->getValue(),$cells[2]->getValue(),$cells[3]->getValue(),'0',$cells[4]->getValue());
          }
-    }
+      }
+
 }
 $reader->close();
-header("location:../vistas/IngresosBanco.php");
-
+  }
+ // header("location:../vistas/IngresosBanco.php");
   }
 
   }
